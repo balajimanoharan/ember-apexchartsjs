@@ -3,6 +3,15 @@ ember-apex-charts
 
 [Short description of the addon.]
 
+
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v3.12 or above
+* Ember CLI v2.13 or above
+* Node.js v10 or above
+
+
 Installation
 ------------------------------------------------------------------------------
 
@@ -20,6 +29,7 @@ Usage
 Contributing
 ------------------------------------------------------------------------------
 
+<<<<<<< HEAD
 ### Installation
 
 * `git clone <repository-url>`
@@ -42,8 +52,10 @@ Contributing
 
 * `ember serve`
 * Visit the dummy application at [http://localhost:4200](http://localhost:4200).
+=======
+See the [Contributing](CONTRIBUTING.md) guide for details.
+>>>>>>> 1c205ac... v3.5.0...v3.16.0
 
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
 
 License
 ------------------------------------------------------------------------------
