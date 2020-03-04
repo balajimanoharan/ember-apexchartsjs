@@ -1,14 +1,14 @@
 ember-apex-charts
 ==============================================================================
 
-An Ember Wrapper for [apexcharts](https://apexcharts.com)
+A simple ember wrapper for [apexcharts](https://apexcharts.com)
 
 
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v3.12 or above
-* Ember CLI v2.13 or above
+* Ember.js >= v3.13
+* Ember CLI >= 3.12.0-beta.2
 * Node.js v10 or above
 
 
@@ -19,12 +19,32 @@ Installation
 ember install ember-apex-charts
 ```
 
-
 Usage
 ------------------------------------------------------------------------------
 
-TODO
+```js
+const chartOptions = {
+  chart: {
+    height: '400px',
+    type: 'line',
+    width: '800px'
+  },
+  series: [{
+    data: [30,40,35,50,49,60,70,91,125]
+  }],
+  xaxis: {
+    categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
+  }
+}
+```
 
+```hbs
+<ApexChart
+  @chartOptions={{this.chartOptions}}
+/>
+```
+
+The complete set of supported chart types and chart options can be found here: [Apexcharts Documentation](https://apexcharts.com/docs)
 
 Contributing
 ------------------------------------------------------------------------------
