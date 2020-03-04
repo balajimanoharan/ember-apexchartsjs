@@ -1,1 +1,1 @@
-export { default } from 'ember-apex-charts/components/apex-chart';
+export { default } from 'ember-apexchartsjs/components/apex-chart';
