@@ -1,4 +1,4 @@
-ember-apex-charts
+ember-apexchartsjs
 ==============================================================================
 
 A simple ember wrapper for [apexcharts](https://apexcharts.com)
@@ -16,7 +16,7 @@ Installation
 ------------------------------------------------------------------------------
 
 ```
-ember install ember-apex-charts
+ember install ember-apexchartsjs
 ```
 
 Usage

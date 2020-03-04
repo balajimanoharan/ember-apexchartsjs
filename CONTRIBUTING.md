@@ -3,7 +3,7 @@
 ## Installation
 
 * `git clone <repository-url>`
-* `cd ember-apex-charts`
+* `cd ember-apexchartsjs`
 * `npm install`
 
 ## Linting
