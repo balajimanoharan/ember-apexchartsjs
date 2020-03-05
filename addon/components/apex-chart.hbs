@@ -1,5 +1,5 @@
 <div
-  class="ember-apex-chart {{this.className}}"
+  class="ember-apex-chart {{this.guid}} {{this.args.classNames}}"
   {{did-insert this.createChart}}
   {{did-update this.createChart @chartOptions}}
   {{will-destroy this.destroyChart}}

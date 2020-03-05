@@ -6,7 +6,7 @@ import { isNone } from '@ember/utils';
 import { assert } from '@ember/debug';
 
 export default class ApexChart extends Component {
-  get className() {
+  get guid() {
     return guidFor(this);
   }
 

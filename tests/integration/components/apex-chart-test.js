@@ -7,7 +7,7 @@ module('Integration | Component | apex-chart', function(hooks) {
   setupRenderingTest(hooks);
 
   test('renders different chart types based on chartOptions', async function(assert) {
-    assert.expect(2);
+    assert.expect(4);
 
     this.set('chartOptions', {
       chart: {
@@ -22,11 +22,19 @@ module('Integration | Component | apex-chart', function(hooks) {
     });
 
     await render(hbs`<ApexChart
+     @classNames="apexchart apexchart__line"
      @chartOptions={{this.chartOptions}}
     />`);
 
     assert.dom('div.ember-apex-chart .apexcharts-line-series')
       .exists('The component renders a line chart when the type specified is `line`');
+
+    assert.dom('div.ember-apex-chart')
+      .hasClass('apexchart',
+      'The component renders a line chart when classnames passed through');
+    assert.dom('div.ember-apex-chart')
+      .hasClass('apexchart__line',
+      'The component renders a line chart when classnames passed through');
 
     this.set('chartOptions', {
       chart: {
