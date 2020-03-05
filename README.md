@@ -3,6 +3,8 @@ ember-apexchartsjs
 
 A simple ember wrapper for [apexcharts](https://apexcharts.com)
 
+[![Travis][build-badge]][build]
+
 
 Compatibility
 ------------------------------------------------------------------------------
@@ -56,3 +58,6 @@ License
 ------------------------------------------------------------------------------
 
 This project is licensed under the [MIT License](LICENSE.md).
+
+[build-badge]: https://travis-ci.org/balajimanoharan/ember-apexchartsjs.svg?branch=master
+[build]: https://travis-ci.org/balajimanoharan/ember-apexchartsjs
