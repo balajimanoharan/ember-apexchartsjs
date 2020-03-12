@@ -5,9 +5,9 @@
   "keywords": [
     "ember-addon"
   ],
-  "repository": "",
+  "repository": "https://github.com/balajimanoharan/ember-apexchartsjs",
   "license": "MIT",
-  "author": "",
+  "author": "Balaji Manoharan <balaji.mano3@gmail.com>",
   "directories": {
     "doc": "doc",
     "test": "tests"
