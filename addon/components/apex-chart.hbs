@@ -1,7 +1,14 @@
 <div
   class="ember-apex-chart {{this.guid}} {{@classNames}}"
   {{did-insert this.createChart}}
-  {{did-update this.createChart @chartOptions}}
+  {{did-update this.createChart
+    @chartOptions
+    @type
+    @width
+    @height
+    @series
+    @options
+  }}
   {{will-destroy this.destroyChart}}
   ...attributes
 >
