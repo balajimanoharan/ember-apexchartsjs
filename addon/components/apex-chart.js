@@ -2,12 +2,26 @@ import Component from '@glimmer/component';
 import ApexCharts from 'apexcharts';
 import { guidFor } from '@ember/object/internals';
 import { action } from '@ember/object';
-import { isNone } from '@ember/utils';
-import { assert } from '@ember/debug';
 
 export default class ApexChart extends Component {
   get guid() {
     return guidFor(this);
+  }
+
+  get chartOptions() {
+    const {
+      type='line',
+      width='100%',
+      height='auto',
+      series=[],
+      chartOptions={}
+    } = this.args;
+
+    return {
+      chart: { type, width, height },
+      series,
+      ...chartOptions
+    };
   }
 
   @action
@@ -19,9 +33,7 @@ export default class ApexChart extends Component {
   createChart(element) {
     this.destroyChart();
 
-    assert('this.args.chartOptions must be defined', !isNone(this.args.chartOptions));
-
-    this.chart = new ApexCharts(element, this.args.chartOptions);
+    this.chart = new ApexCharts(element, this.chartOptions);
     this.chart.render();
   }
 }
