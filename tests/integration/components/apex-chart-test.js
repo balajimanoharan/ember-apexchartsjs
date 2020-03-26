@@ -22,7 +22,7 @@ module('Integration | Component | apex-chart', function(hooks) {
     });
 
     await render(hbs`<ApexChart
-     @classNames="apexchart apexchart__line"
+     class="apexchart apexchart__line"
      @chartOptions={{this.chartOptions}}
     />`);
 
@@ -52,20 +52,20 @@ module('Integration | Component | apex-chart', function(hooks) {
       .exists('The component renders a bar chart when the type specified is `bar`');
   });
 
-  test('type, series, options', async function(assert) {
+  test('type, series, chartOptions', async function(assert) {
     assert.expect(7);
 
     this.set('type', 'bar');
     this.set('series', [{
       data: [30,40,35]
     }]);
-    this.set('options', {});
+    this.set('chartOptions', {});
 
     await render(hbs`<ApexChart
-     @classNames="apexchart apexchart__bar"
+     class="apexchart apexchart__bar"
      @type={{type}}
      @series={{series}}
-     @options={{options}}
+     @chartOptions={{chartOptions}}
     />`);
 
     assert.dom('div.ember-apex-chart .apexcharts-bar-series')
@@ -89,7 +89,7 @@ module('Integration | Component | apex-chart', function(hooks) {
     assert.dom('div.ember-apex-chart .apexcharts-title-text')
       .doesNotExist('When title is not specified in the options, the chart does not render title text');
 
-    this.set('options', {
+    this.set('chartOptions', {
       title: {
         text: 'Test Chart'
       }

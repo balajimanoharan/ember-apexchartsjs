@@ -24,7 +24,37 @@ ember install ember-apexchartsjs
 Usage
 ------------------------------------------------------------------------------
 
-Option 1: chartOptions as argument
+Option 1: Type, height, width series, chartOptions as arguments
+
+```js
+type = 'bar';
+width = '800px';
+height = '400px';
+series = [{
+  name: 'Sales',
+  data: [30,40,35,50,49,60,70,91,125]
+}];
+chartOptions = {
+  title: {
+    text: 'Bar Chart'
+  },
+  xaxis: {
+    categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
+  }
+}
+```
+
+```hbs
+<ApexChart
+ @type={{this.type}}
+ @width={{this.width}}
+ @height={{this.height}}
+ @series={{this.series}}
+ @chartOptions={{this.chartOptions}}
+/>
+```
+
+Option 2: chartOptions as the only argument
 
 ```js
 const chartOptions = {
@@ -47,37 +77,6 @@ const chartOptions = {
   @chartOptions={{this.chartOptions}}
 />
 ```
-
-Option 2: Type, height, width series, options as arguments
-
-```js
-type = 'bar';
-width = '800px';
-height = '400px';
-series = [{
-  name: 'Sales',
-  data: [30,40,35,50,49,60,70,91,125]
-}];
-options = {
-  title: {
-    text: 'Bar Chart'
-  },
-  xaxis: {
-    categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
-  }
-}
-```
-
-```hbs
-<ApexChart
- @type={{this.type}}
- @width={{this.width}}
- @height={{this.height}}
- @series={{this.series}}
- @options={{this.options}}
-/>
-```
-
 
 The complete set of supported chart types and chart options can be found here: [Apexcharts Documentation](https://apexcharts.com/docs)
 

@@ -14,15 +14,15 @@ export default class ApexChart extends Component {
       width='100%',
       height='auto',
       series=[],
-      options={}
+      chartOptions={}
     } = this.args;
-    let chartOptions = Object.assign({}, options, { chart: {}, series });
 
-    chartOptions.chart = Object.assign(chartOptions.chart, {
-      type, width, height
-    });
+    let options = Object.assign({}, {
+      chart: { type, width, height },
+      series
+    }, chartOptions);
 
-    return chartOptions;
+    return options;
   }
 
   @action
@@ -34,9 +34,7 @@ export default class ApexChart extends Component {
   createChart(element) {
     this.destroyChart();
 
-    let chartOptions = this.args.chartOptions || this.chartOptions;
-
-    this.chart = new ApexCharts(element, chartOptions);
+    this.chart = new ApexCharts(element, this.chartOptions);
     this.chart.render();
   }
 }
