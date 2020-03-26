@@ -17,12 +17,11 @@ export default class ApexChart extends Component {
       chartOptions={}
     } = this.args;
 
-    let options = Object.assign({}, {
+    return {
       chart: { type, width, height },
-      series
-    }, chartOptions);
-
-    return options;
+      series,
+      ...chartOptions
+    };
   }
 
   @action
