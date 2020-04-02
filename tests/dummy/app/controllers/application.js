@@ -27,7 +27,12 @@ export default class ApplicationController extends Controller {
     name: 'Sales',
     data: [30,40,35,50,49,60,70,91,125]
   }];
-  options = {
+  barOptions = {
+    chart: {
+      toolbar: {
+        show: false
+      }
+    },
     title: {
       text: 'Bar Chart'
     },

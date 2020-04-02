@@ -8,7 +8,7 @@ export default class ApexChart extends Component {
     return guidFor(this);
   }
 
-  get chartOptions() {
+  get options() {
     const {
       type='line',
       width='100%',
@@ -17,11 +17,18 @@ export default class ApexChart extends Component {
       chartOptions={}
     } = this.args;
 
-    return {
-      chart: { type, width, height },
+    const options = {
       series,
       ...chartOptions
     };
+
+    //use type, width and height args if specified
+    options.chart = {
+      type, width, height,
+      ...options.chart
+    };
+
+    return options;
   }
 
   @action
@@ -33,7 +40,7 @@ export default class ApexChart extends Component {
   createChart(element) {
     this.destroyChart();
 
-    this.chart = new ApexCharts(element, this.chartOptions);
+    this.chart = new ApexCharts(element, this.options);
     this.chart.render();
   }
 }
