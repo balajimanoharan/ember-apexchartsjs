@@ -7,7 +7,7 @@ module('Integration | Component | apex-chart', function(hooks) {
   setupRenderingTest(hooks);
 
   test('renders different chart types based on chartOptions', async function(assert) {
-    assert.expect(4);
+    assert.expect(5);
 
     this.set('chartOptions', {
       chart: {
@@ -50,16 +50,22 @@ module('Integration | Component | apex-chart', function(hooks) {
 
     assert.dom('div.ember-apex-chart .apexcharts-bar-series')
       .exists('The component renders a bar chart when the type specified is `bar`');
+    assert.dom('div.ember-apex-chart .apexcharts-toolbar')
+      .exists('The toolbar is rendered by default');
   });
 
   test('type, series, chartOptions', async function(assert) {
-    assert.expect(7);
+    assert.expect(8);
 
     this.set('type', 'bar');
     this.set('series', [{
       data: [30,40,35]
     }]);
-    this.set('chartOptions', {});
+    this.set('chartOptions', {
+      chart: {
+        toolbar: { show: false }
+      }
+    });
 
     await render(hbs`<ApexChart
      class="apexchart apexchart__bar"
@@ -88,6 +94,8 @@ module('Integration | Component | apex-chart', function(hooks) {
 
     assert.dom('div.ember-apex-chart .apexcharts-title-text')
       .doesNotExist('When title is not specified in the options, the chart does not render title text');
+    assert.dom('div.ember-apex-chart .apexcharts-toolbar')
+      .doesNotExist('The toolbar is not rendered as specified in the chart options');
 
     this.set('chartOptions', {
       title: {
@@ -96,5 +104,7 @@ module('Integration | Component | apex-chart', function(hooks) {
     });
     assert.dom('div.ember-apex-chart .apexcharts-title-text')
       .hasText('Test Chart', 'When options are changed, the chart updates and adds a title');
+
+
   });
 });
