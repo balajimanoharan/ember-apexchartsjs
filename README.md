@@ -24,7 +24,7 @@ ember install ember-apexchartsjs
 Usage
 ------------------------------------------------------------------------------
 
-Option 1: Type, height, width series, chartOptions as arguments
+#### Option 1: Type, height, width series, chartOptions as arguments
 
 ```js
 type = 'bar';
@@ -54,7 +54,7 @@ chartOptions = {
 />
 ```
 
-Option 2: chartOptions as the only argument
+#### Option 2: chartOptions as the only argument
 
 ```js
 const chartOptions = {
@@ -79,6 +79,57 @@ const chartOptions = {
 ```
 
 The complete set of supported chart types and chart options can be found here: [Apexcharts Documentation](https://apexcharts.com/docs)
+
+#### Actions
+
+All the [apexchart events](https://apexcharts.com/docs/options/chart/events/) can be specified as arguments to the ApexChart component. 
+The example below potrays the use of `click` and `beforeMount` events.
+
+```js
+type = 'bar';
+series = [{
+  name: 'Sales',
+  data: [30,40,35,50,49,60,70,91,125]
+}];
+
+@action
+clickHandler() {
+  //click handler
+}
+
+@action
+beforeMountHandler() {
+  //before mount handler
+}
+```
+
+```hbs
+<ApexChart
+ @type={{this.type}}
+ @series={{this.series}}
+ @onClick={{this.clickHandler}}
+ @onBeforeMount={{this.beforeMountHandler}}
+/>
+```
+
+Complete list of action arguments and their corresponding apexchart event below:
+
+| Apexchart event | Action Argument | 
+| ------------- |-------------| 
+| [beforeMount](https://apexcharts.com/docs/options/chart/events/#beforeMount) | onBeforeMount | 
+| [beforeZoom](https://apexcharts.com/docs/options/chart/events/#beforeZoom) | onBeforeZoom |
+| [click](https://apexcharts.com/docs/options/chart/events/#zoom) | onClick |
+| [dataPointSelection](https://apexcharts.com/docs/options/chart/events/#dataPointSelection) | onDataPointSelection | 
+| [dataPointMouseEnter](https://apexcharts.com/docs/options/chart/events/#dataPointMouseEnter) | onDataPointMouseEnter | 
+| [dataPointMouseLeave](https://apexcharts.com/docs/options/chart/events/#dataPointMouseLeave) | onDataPointMouseLeave | 
+| [legendClick](https://apexcharts.com/docs/options/chart/events/#legendClick) | onLegendClick | 
+| [markerClick](https://apexcharts.com/docs/options/chart/events/#markerClick) | onMarkerClick | 
+| [mouseMove](https://apexcharts.com/docs/options/chart/events/#mouseMove) | onMouseMove | 
+| [mounted](https://apexcharts.com/docs/options/chart/events/#mounted) | onMounted | 
+| [scrolled](https://apexcharts.com/docs/options/chart/events/#scrolled) | onScrolled | 
+| [selection](https://apexcharts.com/docs/options/chart/events/#selection) | onSelection | 
+| [updated](https://apexcharts.com/docs/options/chart/events/#updated) | onUpdated | 
+| [zoomed](https://apexcharts.com/docs/options/chart/events/#zoomed) | onZoomed |
 
 Contributing
 ------------------------------------------------------------------------------
