@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
 
 export default class ApplicationController extends Controller {
   lineChartOptions = {
@@ -39,5 +40,15 @@ export default class ApplicationController extends Controller {
     xaxis: {
       categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
     }
+  }
+
+  @action
+  clickHandler() {
+    console.log('Click handler triggered');
+  }
+
+  @action
+  beforeMountHandler() {
+    console.log('Before Mount handler triggered');
   }
 }

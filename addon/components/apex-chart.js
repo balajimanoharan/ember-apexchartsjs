@@ -2,10 +2,36 @@ import Component from '@glimmer/component';
 import ApexCharts from 'apexcharts';
 import { guidFor } from '@ember/object/internals';
 import { action } from '@ember/object';
+import { classify } from '@ember/string';
+
+const CHART_EVENTS = [
+  'beforeMount',
+  'beforeZoom',
+  'click',
+  'dataPointSelection',
+  'dataPointMouseEnter',
+  'dataPointMouseLeave',
+  'legendClick',
+  'markerClick',
+  'mouseMove',
+  'mounted',
+  'scrolled',
+  'selection',
+  'updated',
+  'zoomed'
+];
 
 export default class ApexChart extends Component {
   get guid() {
     return guidFor(this);
+  }
+
+  get chartEvents() {
+    return CHART_EVENTS.reduce((eventObj, event) => {
+      const chartAction = this.args[`on${classify(event)}`];
+      if(chartAction) eventObj[event] = chartAction;
+      return eventObj;
+    }, {});
   }
 
   get options() {
@@ -27,6 +53,8 @@ export default class ApexChart extends Component {
       type, width, height,
       ...options.chart
     };
+
+    options.chart.events = this.chartEvents;
 
     return options;
   }

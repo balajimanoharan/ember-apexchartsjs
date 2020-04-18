@@ -10,6 +10,9 @@ module.exports = async function() {
         npm: {
           devDependencies: {
             'ember-source': '~3.13.0'
+          },
+          dependencies: {
+            'ember-cli-babel': '7.18.0'
           }
         }
       },

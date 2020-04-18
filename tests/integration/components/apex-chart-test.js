@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { click, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | apex-chart', function(hooks) {
@@ -104,7 +104,33 @@ module('Integration | Component | apex-chart', function(hooks) {
     });
     assert.dom('div.ember-apex-chart .apexcharts-title-text')
       .hasText('Test Chart', 'When options are changed, the chart updates and adds a title');
+  });
 
+  test('actions', async function(assert) {
+    assert.expect(3);
 
+    this.set('type', 'bar');
+    this.set('series', [{
+      data: [30,40,35]
+    }]);
+    this.set('beforeMountHandler', () => {
+      assert.ok(true, 'Before Mount action is registered correctly and triggered');
+      assert.dom('div.ember-apex-chart .apexcharts-bar-series')
+        .doesNotExist('Before Mount handler is triggered before the chart is rendered');
+    });
+
+    this.set('clickHandler', () => {
+      assert.ok(true, 'Click action is registered correctly and triggered');
+    });
+
+    await render(hbs`<ApexChart
+     class="apexchart apexchart__bar"
+     @type={{type}}
+     @series={{series}}
+     @onClick={{action clickHandler}}
+     @onBeforeMount={{action beforeMountHandler}}
+    />`);
+
+    await click('.apexchart__bar .apexcharts-bar-series');
   });
 });
