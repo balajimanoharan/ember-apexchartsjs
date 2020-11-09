@@ -9,8 +9,8 @@ A simple ember wrapper for [apexcharts](https://apexcharts.com)
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js >= v3.13
-* Ember CLI >= 3.12.0-beta.2
+* Ember.js v3.16 or above
+* Ember CLI v2.13 or above
 * Node.js v10 or above
 
 
