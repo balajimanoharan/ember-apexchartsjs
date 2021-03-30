@@ -5,7 +5,7 @@ module.exports = {
   options: {
     autoImport: {
       alias: {
-        'apexcharts': 'apexcharts/dist/apexcharts.min.js'
+        'apexcharts': 'apexcharts/dist/apexcharts.min.js',
       }
     }
   }
