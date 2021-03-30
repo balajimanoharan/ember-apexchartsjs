@@ -3,6 +3,8 @@ import ApexCharts from 'apexcharts';
 import { guidFor } from '@ember/object/internals';
 import { action } from '@ember/object';
 import { classify } from '@ember/string';
+import { buildWaiter } from '@ember/test-waiters';
+import Ember from 'ember';
 
 const CHART_EVENTS = [
   'beforeMount',
@@ -18,8 +20,10 @@ const CHART_EVENTS = [
   'scrolled',
   'selection',
   'updated',
-  'zoomed'
+  'zoomed',
 ];
+
+const waiter = buildWaiter('ember-apexchartsjs:render-waiter');
 
 export default class ApexChart extends Component {
   get guid() {
@@ -29,39 +33,50 @@ export default class ApexChart extends Component {
   get chartEvents() {
     return CHART_EVENTS.reduce((eventObj, event) => {
       const chartAction = this.args[`on${classify(event)}`];
-      if(chartAction) eventObj[event] = chartAction;
+      if (chartAction) eventObj[event] = chartAction;
       return eventObj;
     }, {});
   }
 
   get options() {
     const {
-      type='line',
-      width='100%',
-      height='auto',
-      series=[],
-      chartOptions={}
+      type = 'line',
+      width = '100%',
+      height = 'auto',
+      series = [],
+      chartOptions = {},
     } = this.args;
 
     const options = {
       series,
-      ...chartOptions
+      ...chartOptions,
     };
 
     //use type, width and height args if specified
     options.chart = {
-      type, width, height,
-      ...options.chart
+      type,
+      width,
+      height,
+      ...options.chart,
     };
 
     options.chart.events = this.chartEvents;
+
+    if (Ember.testing) {
+      // Apex throws an error while running a listener if the chart
+      // is being destroyed and animations are disabled
+      options.chart.animations = options.chart.animations || {};
+      options.chart.animations.enabled = true;
+      // Speed up animations during tests
+      options.chart.animations.speed = 100;
+    }
 
     return options;
   }
 
   @action
   destroyChart() {
-    if(this.chart) this.chart.destroy();
+    if (this.chart) this.chart.destroy();
   }
 
   @action
@@ -69,6 +84,8 @@ export default class ApexChart extends Component {
     this.destroyChart();
 
     this.chart = new ApexCharts(element, this.options);
-    this.chart.render();
+
+    const token = waiter.beginAsync();
+    this.chart.render().finally(() => waiter.endAsync(token));
   }
 }
