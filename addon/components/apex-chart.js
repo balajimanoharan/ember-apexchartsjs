@@ -20,10 +20,10 @@ const CHART_EVENTS = [
   'scrolled',
   'selection',
   'updated',
-  'zoomed'
+  'zoomed',
 ];
 
-const waiter = buildWaiter("ember-apexchartsjs:render-waiter");
+const waiter = buildWaiter('ember-apexchartsjs:render-waiter');
 
 export default class ApexChart extends Component {
   get guid() {
@@ -63,7 +63,7 @@ export default class ApexChart extends Component {
     options.chart.events = this.chartEvents;
 
     if (Ember.testing) {
-      // Apex throws an error while running a listener if the chart 
+      // Apex throws an error while running a listener if the chart
       // is being destroyed and animations are disabled
       options.chart.animations = options.chart.animations || {};
       options.chart.animations.enabled = true;
