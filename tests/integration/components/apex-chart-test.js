@@ -1,10 +1,41 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { click, render } from '@ember/test-helpers';
+import { click, render, clearRender } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+
 
 module('Integration | Component | apex-chart', function(hooks) {
   setupRenderingTest(hooks);
+
+  test('renders with animations enabled during tests', async function(assert) {
+    assert.expect(1);
+
+    await render(hbs`<ApexChart
+     class="apexchart apexchart__line"
+     @chartOptions={{this.chartOptions}}
+    />`);
+
+    this.set('chartOptions', {
+      chart: {
+        type: 'line',
+        animations: {
+          enabled: false,
+        },
+      },
+      series: [{
+        data: [30,40,35]
+      }],
+      xaxis: {
+        categories: [1991,1992,1993]
+      }
+    });
+
+    await clearRender();
+
+    // The error apex was emitting would only show up in the browser console
+    // and I could not find a way to capture it, so check there
+    assert.ok(true, 'rendered and destroyed without errors');
+  });
 
   test('renders different chart types based on chartOptions', async function(assert) {
     assert.expect(5);
