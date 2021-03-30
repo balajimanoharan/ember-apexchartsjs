@@ -4,7 +4,7 @@ import { guidFor } from '@ember/object/internals';
 import { action } from '@ember/object';
 import { classify } from '@ember/string';
 import { buildWaiter } from '@ember/test-waiters';
-/* global Ember */
+import Ember from 'ember';
 
 const CHART_EVENTS = [
   'beforeMount',
@@ -66,9 +66,7 @@ export default class ApexChart extends Component {
       // Apex throws an error while running a listener if the chart 
       // is being destroyed and animations are disabled
       options.chart.animations = options.chart.animations || {};
-      if (options.chart.animations.enabled === false) {
-        options.chart.animations.enabled = true;
-      }
+      options.chart.animations.enabled = true;
       // Speed up animations during tests
       options.chart.animations.speed = 100;
     }

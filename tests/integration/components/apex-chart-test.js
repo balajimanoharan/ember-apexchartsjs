@@ -10,11 +10,6 @@ module('Integration | Component | apex-chart', function(hooks) {
   test('renders with animations enabled during tests', async function(assert) {
     assert.expect(1);
 
-    await render(hbs`<ApexChart
-     class="apexchart apexchart__line"
-     @chartOptions={{this.chartOptions}}
-    />`);
-
     this.set('chartOptions', {
       chart: {
         type: 'line',
@@ -29,6 +24,11 @@ module('Integration | Component | apex-chart', function(hooks) {
         categories: [1991,1992,1993]
       }
     });
+
+    await render(hbs`<ApexChart
+     class="apexchart apexchart__line"
+     @chartOptions={{this.chartOptions}}
+    />`);
 
     await clearRender();
 
